@@ -26,7 +26,7 @@ public class DroneController {
     @Operation(summary = "Submit New Drone", description = "Submit New Drone", tags = {"DRONES"})
     @PostMapping(value = "/submit-drone")
     public ResponseEntity<String> submitDrone(@Valid @RequestBody DroneDto droneDto) {
-        String droneSerialNumber = droneService.registerDrone(droneDto);
+        String droneSerialNumber = droneService.submitDrone(droneDto);
         return new ResponseEntity<String>(droneSerialNumber, HttpStatus.CREATED);
     }
 

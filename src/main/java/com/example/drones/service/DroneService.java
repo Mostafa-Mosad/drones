@@ -37,7 +37,7 @@ public class DroneService {
     @Autowired
     private DroneBatteryLogRepository droneBatteryLogRepository;
 
-    public String registerDrone(DroneDto droneDto) {
+    public String submitDrone(DroneDto droneDto) {
         droneValidator.validate(droneDto);
         Drone drone = droneMapper.toEntity(droneDto, Drone.builder().build());
         Drone savedDrone = droneRepository.save(drone);
@@ -46,13 +46,27 @@ public class DroneService {
 
     public void processDroneLoading(DroneDto droneDto) {
         droneValidator.validateDroneState(droneDto.getState());
-        droneDto.setState(State.LOADING);
+        registerDrone(droneDto);
         droneValidator.validateMedications(droneDto.getMedications());
         validateDroneBatteryCapacity(droneDto);
         Drone returnedDrone = droneRepository.findBySerialNumber(droneDto.getSerialNumber());
         droneDto.setState(State.LOADED);
+        droneDto.setWeight(sumOfAllMedicationWeights(droneDto.getMedications()));
         Drone savedDrone = droneRepository.save(droneMapper.toEntity(droneDto, returnedDrone));
         saveMedications(droneDto.getMedications(), savedDrone);
+    }
+
+    private void registerDrone(DroneDto droneDto) {
+        droneDto.setState(State.LOADING);
+        droneRepository.save(droneMapper.toEntity(droneDto, Drone.builder().build()));
+    }
+
+    private Integer sumOfAllMedicationWeights(Set<MedicationDto> medications) {
+        int sumOfAllMedicationWeights = 0;
+        for (MedicationDto medication : medications) {
+            sumOfAllMedicationWeights += medication.getWeight();
+        }
+        return sumOfAllMedicationWeights;
     }
 
     private void validateDroneBatteryCapacity(DroneDto droneDto) {
