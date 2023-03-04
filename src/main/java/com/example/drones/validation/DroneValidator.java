@@ -22,14 +22,9 @@ public class DroneValidator {
     public void validateMedications(Set<MedicationDto> medications) {
         medications.forEach(medicationDto -> {
             Validate.validateNameContainsLettersNumberDashAndUnderScore(medicationDto.getName(), "Medication name");
-            //Validate.validateNameContainsUpperLettersNumberAndUnderScore(medicationDto.getCode(), "Medication code");
+            Validate.validateNameContainsUpperLettersNumberAndUnderScore(medicationDto.getCode(), "Medication code");
         });
         validateSumOfAllMedicationWeights(medications);
-    }
-
-    public void validateDroneBatteryCapacity(String batteryCapacity) {
-        if(Integer.parseInt(batteryCapacity.substring(0, batteryCapacity.length()-1)) < 25)
-            throw new IllegalArgumentException("The drone battery capacity must be >= 25%");
     }
 
     private void validateSumOfAllMedicationWeights(Set<MedicationDto> medications) {

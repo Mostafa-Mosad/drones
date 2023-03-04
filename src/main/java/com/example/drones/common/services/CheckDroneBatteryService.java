@@ -19,7 +19,7 @@ public class CheckDroneBatteryService {
     @Autowired
     private DroneBatteryLogRepository droneBatteryLogRepository;
 
-    @Scheduled(fixedRateString = "PT1H")
+    @Scheduled(fixedRateString = "PT600S")
     public void executeCheckBattery() {
         List<Drone> drones = getAllDrones();
         drones.forEach(drone -> {

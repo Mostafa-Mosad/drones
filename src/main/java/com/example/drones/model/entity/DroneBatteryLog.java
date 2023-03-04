@@ -2,24 +2,19 @@ package com.example.drones.model.entity;
 
 import com.example.drones.common.enums.Model;
 import com.example.drones.common.enums.State;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.drones.common.models.BaseEntity;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "drone_battery_log")
 @Entity(name = "drone_battery_log")
 @Builder
-public class DroneBatteryLog {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class DroneBatteryLog extends BaseEntity {
 
     @Column(name = "drone_serial_number")
     private String droneSerialNumber;

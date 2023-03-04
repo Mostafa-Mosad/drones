@@ -1,24 +1,18 @@
 package com.example.drones.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.drones.common.models.BaseEntity;
+import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "image")
 @Entity(name = "image")
 @Builder
-public class Image implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Image extends BaseEntity {
 
     @Column(name = "name")
     private String name;

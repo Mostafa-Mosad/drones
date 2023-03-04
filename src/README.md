@@ -17,7 +17,13 @@ Each Drone has:
 ##2- Load a drone with medication items, but the sum of medication items not greater than 500gm!
 
 ##Database: 
-- Using H2 in-memory database with data.sql script to insert 10 drones. 
+Using H2 in-memory database with data.sql script to insert 10 drones.
+Open the following link to see data: http://localhost:8080/h2-console/ , then enter the following data:
+  - url: jdbc:h2:mem:test
+  - username: sa
+  - password: password
+  - then click connect!
+
 
 ##Build application:
 ````mvn clean install````
