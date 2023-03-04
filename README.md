@@ -14,7 +14,9 @@ Each Drone has:
 - battery capacity (percentage);
 - state (IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING).
 
-##2- Load a drone with medication items, but the sum of medication items not greater than 500gm!
+##2- Get available drones for loading!
+
+##3- Load a drone with medication items, but the sum of medication items not greater than 500gm!
 
 ##Database: 
 Using H2 in-memory database with data.sql script to insert 10 drones.
