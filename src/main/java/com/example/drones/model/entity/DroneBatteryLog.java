@@ -3,6 +3,7 @@ package com.example.drones.model.entity;
 import com.example.drones.common.enums.Model;
 import com.example.drones.common.enums.State;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Table(name = "drone_battery_log")
 @Entity(name = "drone_battery_log")
+@Builder
 public class DroneBatteryLog {
 
     @Id
